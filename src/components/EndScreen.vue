@@ -20,6 +20,7 @@ export default {
   methods: {
     startAgain() {
       this.$emit("start-over");
+      
     },
   },
 };
