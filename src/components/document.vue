@@ -119,7 +119,6 @@
               style="
                 width: 100%;
                 height: 100%;
-                border: 2px solid black;
                 box-sizing: border-box;
                 font-size: 0.9rem;
                 text-align: center;
@@ -185,8 +184,8 @@
           </div>
         </foreignObject>
 
-        //
-        // <!-- input 3 -->
+        // //
+        <!-- input 3 -->
         <rect class="cls-4" x="369" y="76" width="80" height="23" />
         <foreignObject x="369" y="76" width="80" height="23">
           <div
@@ -214,8 +213,8 @@
           </div>
         </foreignObject>
 
-        //
-        // <!-- input 4 -->
+        // //
+        <!-- input 4 -->
         <rect class="cls-4" x="191" y="76" width="132" height="22" />
         <foreignObject x="191" y="76" width="132" height="22">
           <div
@@ -243,7 +242,8 @@
           </div>
         </foreignObject>
 
-        // <!-- input 5 -->
+        //
+        <!-- input 5 -->
         <rect class="cls-4" x="79" y="76" width="90" height="22" />
         <foreignObject x="79" y="76" width="90" height="22">
           <div
@@ -366,6 +366,7 @@
             </div>
           </foreignObject>
         </g>
+        // תאריך עבודה
         <rect class="cls-4" x="503" y="291" width="114" height="29" />
 
         <foreignObject x="503" y="291" width="114" height="29">
@@ -380,11 +381,11 @@
             "
           >
             <input
-            v-model="userJobA"
+              v-model="userJobA"
+              :class="{ wrong: wrongUserJobA }"
               style="
                 width: 100%;
                 height: 100%;
-                border: 2px solid black;
                 box-sizing: border-box;
                 font-size: 0.9rem;
                 text-align: center;
@@ -408,10 +409,11 @@
             "
           >
             <input
+              v-model="userDateConfirmationA"
+              :class="{ wrong: wrongUserDateConfirmationA }"
               style="
                 width: 100%;
                 height: 100%;
-                border: 2px solid black;
                 box-sizing: border-box;
                 font-size: 0.9rem;
                 text-align: center;
@@ -420,7 +422,7 @@
             />
           </div>
         </foreignObject>
-
+        // שני תאריכים שעה וסימון
         <rect class="cls-4" x="619" y="405" width="66" height="22" />
 
         <foreignObject x="619" y="405" width="66" height="22">
@@ -435,10 +437,11 @@
             "
           >
             <input
+              v-model="userDateB1"
+              :class="{ wrong: wrongUserDateB1 }"
               style="
                 width: 100%;
                 height: 100%;
-                border: 2px solid black;
                 box-sizing: border-box;
                 font-size: 0.9rem;
                 text-align: center;
@@ -462,10 +465,11 @@
             "
           >
             <input
+              v-model="userHourB"
+              :class="{ wrong: wrongUserHourB }"
               style="
                 width: 100%;
                 height: 100%;
-                border: 2px solid black;
                 box-sizing: border-box;
                 font-size: 0.9rem;
                 text-align: center;
@@ -489,10 +493,11 @@
             "
           >
             <input
+              v-model="userMarked"
+              :class="{ wrong: wrongUserMarked }"
               style="
                 width: 100%;
                 height: 100%;
-                border: 2px solid black;
                 box-sizing: border-box;
                 font-size: 0.9rem;
                 text-align: center;
@@ -516,10 +521,11 @@
             "
           >
             <input
+              v-model="userDateB2"
+              :class="{ wrong: wrongUserDateB2 }"
               style="
                 width: 100%;
                 height: 100%;
-                border: 2px solid black;
                 box-sizing: border-box;
                 font-size: 0.9rem;
                 text-align: center;
@@ -528,7 +534,7 @@
             />
           </div>
         </foreignObject>
-// מערך B
+        // מערך B
         <g v-for="(pos, index) in positionsB" :key="index">
           <rect
             :x="pos.x"
@@ -537,7 +543,6 @@
             :height="pos.height"
             stroke="none"
             fill="none"
-
           />
           <foreignObject
             :x="pos.x"
@@ -574,51 +579,48 @@
         // מערך B שוטר
 
         <g v-for="(pos, index) in positionsBcop" :key="index">
-  <rect
-    :x="pos.x"
-    :y="pos.y"
-    :width="pos.width"
-    :height="pos.height"
-    stroke="none"
-    fill="none"
-  />
+          <rect
+            :x="pos.x"
+            :y="pos.y"
+            :width="pos.width"
+            :height="pos.height"
+            stroke="none"
+            fill="none"
+          />
 
-  <foreignObject
-    :x="pos.x"
-    :y="pos.y"
-    :width="pos.width"
-    :height="pos.height"
-  >
-    <div
-      xmlns="http://www.w3.org/1999/xhtml"
-      style="
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-    >
-      <input
-        v-model="userAnswersB1[index]"
-        :class="{ wrong: wrongUserAnswersB1[index] }"
-        style="
-          width: 100%;
-          height: 100%;
-          border: 2px solid black;
-          box-sizing: border-box;
-          font-size: 0.9rem;
-          text-align: center;
-          border-radius: 5px;
-        "
-      />
-    </div>
-  </foreignObject>
-</g>
-
-
+          <foreignObject
+            :x="pos.x"
+            :y="pos.y"
+            :width="pos.width"
+            :height="pos.height"
+          >
+            <div
+              xmlns="http://www.w3.org/1999/xhtml"
+              style="
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <input
+                v-model="userAnswersB1[index]"
+                :class="{ wrong: wrongUserAnswersB1[index] }"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box;
+                  font-size: 0.9rem;
+                  text-align: center;
+                  border-radius: 5px;
+                "
+              />
+            </div>
+          </foreignObject>
+        </g>
+        // עבודה ותאריך B
         <rect class="cls-4" x="505" y="601" width="106" height="29" />
-
         <foreignObject x="505" y="601" width="106" height="29">
           <div
             xmlns="http://www.w3.org/1999/xhtml"
@@ -631,10 +633,11 @@
             "
           >
             <input
+              v-model="userJobB"
+              :class="{ wrong: wrongUserJobB }"
               style="
                 width: 100%;
                 height: 100%;
-                border: 2px solid black;
                 box-sizing: border-box;
                 font-size: 0.9rem;
                 text-align: center;
@@ -644,9 +647,7 @@
           </div>
         </foreignObject>
 
-
         <rect class="cls-4" x="194" y="636" width="123" height="23" />
-
         <foreignObject x="194" y="636" width="123" height="23">
           <div
             xmlns="http://www.w3.org/1999/xhtml"
@@ -659,10 +660,11 @@
             "
           >
             <input
+              v-model="userDateConfirmationB"
+              :class="{ wrong: wrongUserDateConfirmationB }"
               style="
                 width: 100%;
                 height: 100%;
-                border: 2px solid black;
                 box-sizing: border-box;
                 font-size: 0.9rem;
                 text-align: center;
@@ -671,105 +673,105 @@
             />
           </div>
         </foreignObject>
+        // עבודה ותאירך C
+
         <rect class="cls-4" x="323" y="720" width="102" height="25" />
+        <foreignObject x="323" y="720" width="102" height="25">
+          <div
+            xmlns="http://www.w3.org/1999/xhtml"
+            style="
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <input
+             v-model="userMarkedC"
+              :class="{ wrong: wrongUserMarkedC }"
+              style="
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box;
+                font-size: 0.9rem;
+                text-align: center;
+                border-radius: 5px;
+              "
+            />
+          </div>
+        </foreignObject>
 
-<foreignObject x="323" y="720" width="102" height="25">
-  <div
-    xmlns="http://www.w3.org/1999/xhtml"
-    style="
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    "
-  >
-    <input
-      style="
-        width: 100%;
-        height: 100%;
-        border: 2px solid black;
-        box-sizing: border-box;
-        font-size: 0.9rem;
-        text-align: center;
-        border-radius: 5px;
-      "
-    />
-  </div>
-</foreignObject>
+        <rect class="cls-4" x="154" y="720" width="114" height="25" />
+        <foreignObject x="154" y="720" width="114" height="25">
+          <div
+            xmlns="http://www.w3.org/1999/xhtml"
+            style="
+              width: 100%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <input
+              v-model="userDateC"
+              :class="{ wrong: wrongUserDateC }"
+              style="
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box;
+                font-size: 0.9rem;
+                text-align: center;
+                border-radius: 5px;
+              "
+            />
+          </div>
+        </foreignObject>
 
-<rect class="cls-4" x="154" y="720" width="114" height="25" />
+        <g v-for="(pos, index) in positionsC" :key="index">
+          <rect
+            :x="pos.x"
+            :y="pos.y"
+            :width="pos.width"
+            :height="pos.height"
+            stroke="none"
+            fill="none"
+          />
 
-<foreignObject x="154" y="720" width="114" height="25">
-  <div
-    xmlns="http://www.w3.org/1999/xhtml"
-    style="
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    "
-  >
-    <input
-      style="
-        width: 100%;
-        height: 100%;
-        border: 2px solid black;
-        box-sizing: border-box;
-        font-size: 0.9rem;
-        text-align: center;
-        border-radius: 5px;
-      "
-    />
-  </div>
-</foreignObject>
+          <foreignObject
+            :x="pos.x"
+            :y="pos.y"
+            :width="pos.width"
+            :height="pos.height"
+          >
+            <div
+              xmlns="http://www.w3.org/1999/xhtml"
+              style="
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <input
+                v-model="userAnswersC[index]"
+                :class="{ wrong: wrongUserAnswersC[index] }"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box;
+                  font-size: 0.9rem;
+                  text-align: center;
+                  border-radius: 5px;
+                "
+              />
+            </div>
+          </foreignObject>
+        </g>
 
-<g v-for="(pos, index) in positionsC" :key="index">
-  <rect
-    :x="pos.x"
-    :y="pos.y"
-    :width="pos.width"
-    :height="pos.height"
-    stroke="none"
-    fill="none"
-  />
-
-  <foreignObject
-    :x="pos.x"
-    :y="pos.y"
-    :width="pos.width"
-    :height="pos.height"
-  >
-    <div
-      xmlns="http://www.w3.org/1999/xhtml"
-      style="
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-    >
-      <input
-        v-model="userAnswersC[index]"
-        :class="{ wrong: wrongUserAnswersC[index] }"
-        style="
-          width: 100%;
-          height: 100%;
-          border: 2px solid black;
-          box-sizing: border-box;
-          font-size: 0.9rem;
-          text-align: center;
-          border-radius: 5px;
-        "
-      />
-    </div>
-  </foreignObject>
-</g>
-
-<rect class="cls-4" x="189" y="819" width="104" height="30" />
-
+        <rect class="cls-4" x="189" y="819" width="104" height="30" />
 <foreignObject x="189" y="819" width="104" height="30">
   <div
     xmlns="http://www.w3.org/1999/xhtml"
@@ -782,10 +784,11 @@
     "
   >
     <input
+      v-model="userDrugKind"
+      :class="{ wrong: wrongUserDrugKind }"
       style="
         width: 100%;
         height: 100%;
-        border: 2px solid black;
         box-sizing: border-box;
         font-size: 0.9rem;
         text-align: center;
@@ -802,7 +805,6 @@
           d="M152.2,312c2.17,1.31,3.31,3.92,3.8,7.11v1.96c-1.33,9.48-8.73,13.17-14.52,15.56-.61.25-4.26,1.33-4.32,1.73,1.43,5.36,6.08,6.04,9.39,4,3.14-1.93,4.34-4.95,6.59-8.05.46-.63.93-.56.75.33-.06.3-1.55,2.87-1.85,3.75-.8,2.34-1.06,5.15.58,6.95.93,1.02,1.46.58,2.51.74l-.69,2.94h-.35c-.33-.66,0-1.36.17-1.96-3.01-.09-4-4.14-3.29-7.84-3.78,5.84-12.1,8.14-14.53-.73-4.88,1.56-9.89,3.06-14.92,2.17-2.91-.52-6.34-1.88-7.54-6.1v-3.68c1.5-6.1,4.64-12.96,9.9-11.7.57.14,1.92.77,1.08,1.65-3.4-2.35-6.43.68-8.35,4.59-3.09,6.27-2.93,11.71,2.87,13.73,5.38,1.87,11.04.22,16.34-1.44.54-.4.24-3.3.3-4.24.41-6.52,4.78-12.89,8.21-16.78,1.62-1.85,3.3-3.63,5.27-4.66h2.59ZM136.82,337.24c5.64-1.84,16.12-5.49,18.15-14.33,1.22-5.28-1.37-11.61-5.63-9.7-2.53,1.13-7.92,8.09-9.58,11.17-1.97,3.65-3.45,8.18-2.94,12.86Z"
         />
 
-      
         <rect class="cls-2" x="718.5" y="826" width="16.5" height="16.5" />
 
         <path
@@ -819,96 +821,95 @@
         />
         // down give
         <g v-for="(pos, index) in positionsCdown" :key="index">
-  <rect
-    :x="pos.x"
-    :y="pos.y"
-    :width="pos.width"
-    :height="pos.height"
-    stroke="none"
-    fill="none"
-  />
+          <rect
+            :x="pos.x"
+            :y="pos.y"
+            :width="pos.width"
+            :height="pos.height"
+            stroke="none"
+            fill="none"
+          />
 
-  <foreignObject
-    :x="pos.x"
-    :y="pos.y"
-    :width="pos.width"
-    :height="pos.height"
-  >
-    <div
-      xmlns="http://www.w3.org/1999/xhtml"
-      style="
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-    >
-      <input
-        :id="'down-giver-' + index"
-        v-model="userAnswerDownGiver[index]"
-        :class="{ wrong: wrongUserAnswerDownGiver[index] }"
-        style="
-          width: 100%;
-          height: 100%;
-          border: 2px solid black;
-          box-sizing: border-box;
-          font-size: 0.9rem;
-          text-align: center;
-          border-radius: 5px;
-        "
-      />
-    </div>
-  </foreignObject>
-</g>
-// down checker
-<g v-for="(pos, index) in positionsCdown2" :key="index">
-  <rect
-    :x="pos.x"
-    :y="pos.y"
-    :width="pos.width"
-    :height="pos.height"
-    stroke="none"
-    fill="none"
-  />
+          <foreignObject
+            :x="pos.x"
+            :y="pos.y"
+            :width="pos.width"
+            :height="pos.height"
+          >
+            <div
+              xmlns="http://www.w3.org/1999/xhtml"
+              style="
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <input
+                :id="'down-giver-' + index"
+                v-model="userAnswerDownGiver[index]"
+                :class="{ wrong: wrongUserAnswerDownGiver[index] }"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box;
+                  font-size: 0.9rem;
+                  text-align: center;
+                  border-radius: 5px;
+                "
+              />
+            </div>
+          </foreignObject>
+        </g>
+        // down checker
+        <g v-for="(pos, index) in positionsCdown2" :key="index">
+          <rect
+            :x="pos.x"
+            :y="pos.y"
+            :width="pos.width"
+            :height="pos.height"
+            stroke="none"
+            fill="none"
+          />
 
-  <foreignObject
-    :x="pos.x"
-    :y="pos.y"
-    :width="pos.width"
-    :height="pos.height"
-  >
-    <div
-      xmlns="http://www.w3.org/1999/xhtml"
-      style="
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      "
-    >
-      <input
-        :id="'down-checker-' + index"
-        v-model="userAnswerDownChecker[index]"
-        :class="{ wrong: wrongUserAnswerDownChecker[index] }"
-        style="
-          width: 100%;
-          height: 100%;
-          border: 2px solid black;
-          box-sizing: border-box;
-          font-size: 0.9rem;
-          text-align: center;
-          border-radius: 5px;
-        "
-      />
-    </div>
-  </foreignObject>
-</g>
+          <foreignObject
+            :x="pos.x"
+            :y="pos.y"
+            :width="pos.width"
+            :height="pos.height"
+          >
+            <div
+              xmlns="http://www.w3.org/1999/xhtml"
+              style="
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              "
+            >
+              <input
+                :id="'down-checker-' + index"
+                v-model="userAnswerDownChecker[index]"
+                :class="{ wrong: wrongUserAnswerDownChecker[index] }"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box;
+                  font-size: 0.9rem;
+                  text-align: center;
+                  border-radius: 5px;
+                "
+              />
+            </div>
+          </foreignObject>
+        </g>
 
+        // שני ריבועי החתימות
         <rect class="cls-1" x="400" y="977.93" width="57.5" height="43" />
-  
         <rect class="cls-1" x="33.83" y="976.85" width="57.5" height="43" />
+
         <g id="X3">
           <rect class="cls-5" x="719" y="827" width="15" height="15" />
           <text class="cls-3" transform="translate(722.16 839.48)">
@@ -933,7 +934,7 @@
     </g>
     <image
       href="@/assets/media/part1documents/nextBtn.png"
-      @click="checkB"
+      @click="checkC1"
       class="button-next"
       style="cursor: pointer"
     />
@@ -944,12 +945,11 @@ export default {
   name: "document",
   data() {
     return {
-      inputs: [],
-      reasonAnswer: "",
-      roomUser: "",
       userLow: "",
       userAnswerUp: Array(3).fill(""),
       userAnswersA: Array(5).fill(""),
+      userDateA: "",
+      userHourA: "",
       userAnswersA1: Array(4).fill(""),
       positions: [
         { x: 566, y: 250, width: 115, height: 23 },
@@ -958,44 +958,51 @@ export default {
         { x: 98, y: 247, width: 93, height: 23 },
       ],
       userJobA: "",
+      userDateConfirmationA: "",
+      userDateB1: "",
+      userHourB: "",
+      userMarked: "",
+      userDateB2: "",
       userAnswersB: Array(4).fill(""),
       positionsB: [
-  { x: 633, y: 488, width: 96, height: 24 },
-  { x: 525, y: 488, width: 83, height: 24 },
-  { x: 348, y: 488, width: 140, height: 23 },
-  { x: 191, y: 485, width: 104, height: 26 }
-],
+        { x: 633, y: 488, width: 96, height: 24 },
+        { x: 525, y: 488, width: 83, height: 24 },
+        { x: 348, y: 488, width: 140, height: 23 },
+        { x: 191, y: 485, width: 104, height: 26 },
+      ],
       userAnswersB1: Array(4).fill(""),
-  positionsBcop: [
-  { x: 562, y: 559, width: 116, height: 24 },
-  { x: 437, y: 559, width: 100, height: 23 },
-  { x: 242, y: 559, width: 138, height: 23 },
-  { x: 99,  y: 559, width: 90,  height: 24 }
-],
+      positionsBcop: [
+        { x: 562, y: 559, width: 116, height: 24 },
+        { x: 437, y: 559, width: 100, height: 23 },
+        { x: 242, y: 559, width: 138, height: 23 },
+        { x: 99, y: 559, width: 90, height: 24 },
+      ],
+      userJobB: "",
+      userDateConfirmationB: "",
+      userMarkedC: "",
+      userDateC: "",
       userAnswersC: Array(4).fill(""),
       positionsC: [
-  { x: 594, y: 756, width: 112, height: 26 },
-  { x: 484, y: 756, width: 101, height: 23 },
-  { x: 273, y: 756, width: 135, height: 23 },
-  { x: 108, y: 756, width: 97,  height: 24 }
-],
+        { x: 594, y: 756, width: 112, height: 26 },
+        { x: 484, y: 756, width: 101, height: 23 },
+        { x: 273, y: 756, width: 135, height: 23 },
+        { x: 108, y: 756, width: 97, height: 24 },
+      ],
+      userDrugKind: "",
       userCheckbox: Array(3).fill(""),
       userAnswerDownGiver: Array(3).fill(""),
       positionsCdown: [
-  { x: 647, y: 984, width: 81.33, height: 32.31 },
-  { x: 570, y: 983, width: 71, height: 34.66 },
-  { x: 466, y: 983.17, width: 96, height: 34.66 }
-],
+        { x: 647, y: 984, width: 81.33, height: 32.31 },
+        { x: 570, y: 983, width: 71, height: 34.66 },
+        { x: 466, y: 983.17, width: 96, height: 34.66 },
+      ],
       userAnswerDownChecker: Array(3).fill(""),
       positionsCdown2: [
-  { x: 276.83, y: 982.91, width: 81.33, height: 32.31 },
-  { x: 203.83, y: 981.91, width: 71, height: 34.66 },
-  { x: 99.83,  y: 982.08, width: 96, height: 34.66 }
-],
-      userDateA: "",
-      userHourA: "",
-      userMarked: "",
-      userDrugKind: "",
+        { x: 276.83, y: 982.91, width: 81.33, height: 32.31 },
+        { x: 200.83, y: 981.91, width: 71, height: 34.66 },
+        { x: 99.83, y: 982.08, width: 96, height: 34.66 },
+      ],
+      
       signedAsus: false,
       signedAcop: false,
       signedBsus: false,
@@ -1008,22 +1015,33 @@ export default {
       wrongDateA: false,
       wrongHourA: false,
       wrongUserAnswersA1: Array(4).fill(""),
+      wrongUserJobA: false,
+      wrongUserDateConfirmationA: false,
+      wrongUserDateB1: "",
+      wrongUserHourB: "",
+      wrongUserMarked: "",
+      wrongUserDateB2: "",
       wrongUserAnswersB: Array(4).fill(false),
       wrongUserAnswersB1: Array(4).fill(false),
+      wrongUserJobB: false,
+      wrongUserDateConfirmationB: false,
+      wrongUserMarkedC: "",
+      wrongUserDateC: "",
       wrongUserAnswersC: Array(4).fill(false),
+      wrongUserDrugKind: "",
       wrongUserAnswerDownGiver: Array(3).fill(false),
       wrongUserAnswerDownChecker: Array(3).fill(false),
       // answers
       answersUp: ["יואב", "202510047", "01/03/2025"],
       low: "3",
       susInfo: ["256333791", "9543874", 'רב"ט', "לירון אסולין", 'בא"ף 8223'],
-      date: "01/03/2025",
+      date: ["01/03/2025", "01.03.2025"],
       hourA: "18:23",
       copInfo: ["8357012", "סמל", "רוני בן משה", 'מצ"ח 6012'],
-      jobA: 'בלש מצ"ח',
+      job: 'בלש מצ"ח',
       hourB: "18:31",
       marked: "ר.ב.מ (02)",
-      DrugKind: "THC",
+      drugKind: "THC",
     };
   },
   methods: {
@@ -1040,20 +1058,16 @@ export default {
         console.log("אוף");
       }
     },
+
     // בדיקה של הלמעלה
     checkUp() {
-      // בדיקת 3 השדות הקיימים
       this.wrongUserAnswersUp = this.userAnswerUp.map(
         (ans, i) => ans.trim() !== this.answersUp[i].trim()
       );
 
-      // בדיקת השדה החדש userLow
       const lowWrong = this.userLow.trim() !== this.low.trim();
-
-      // מוסיפים אותו למערך השגיאות
       this.wrongUserAnswersUp.push(lowWrong);
 
-      // בדיקה אם הכול נכון
       const isCorrect = this.wrongUserAnswersUp.every((v) => v === false);
 
       if (isCorrect) {
@@ -1062,29 +1076,26 @@ export default {
         console.log("אוף");
       }
     },
-    // בדיקה של תאריך ושעהן A
-    checkDateHour() {
-      // בדיקה של תאריך
-      this.wrongDateA = this.userDateA.trim() !== this.date.trim();
 
-      // בדיקה של שעה
+    // בדיקה של תאריך ושעה A
+    checkDateHour() {
+      this.wrongDateA = !this.date.includes(this.userDateA.trim());
+
       this.wrongHourA = this.userHourA.trim() !== this.hourA.trim();
 
-      // הצלחה כוללת
       if (!this.wrongDateA && !this.wrongHourA) {
         console.log("יייי");
       } else {
         console.log("אוף");
       }
     },
+
     // בדיקה של פרטי השוטר A
     check2() {
-      // מערך שמסמן אילו תשובות שגויות
       this.wrongUserAnswersA1 = this.userAnswersA1.map(
         (ans, i) => ans.trim() !== this.copInfo[i].trim()
       );
 
-      // בודק אם כולם נכונים
       const isCorrect = this.wrongUserAnswersA1.every((v) => v === false);
 
       if (isCorrect) {
@@ -1093,40 +1104,129 @@ export default {
         console.log("אוף – יש תשובות שגויות", this.wrongUserAnswersA1);
       }
     },
-    // בדיקה של תאריך ועבודה A
-    check3() {
 
+    // בדיקה של עבודה + תאריך A
+    check3() {
+      this.wrongUserJobA = this.userJobA.trim() !== this.job.trim();
+
+      this.wrongUserDateConfirmationA = !this.date.includes(
+        this.userDateConfirmationA.trim()
+      );
+
+      if (!this.wrongUserJobA && !this.wrongUserDateConfirmationA) {
+        console.log("כל הכבוד!! שני השדות נכונים ✔️");
+      } else {
+        console.log("יש טעויות... ❌");
+      }
     },
+
     // שני תאריך, שעה וסימון B
     check4() {
+      this.wrongUserDateB1 = !this.date.includes(this.userDateB1.trim());
 
+      this.wrongUserHourB = this.userHourB.trim() !== this.hourB.trim();
+
+      this.wrongUserMarked = this.userMarked.trim() !== this.marked.trim();
+
+      this.wrongUserDateB2 = !this.date.includes(this.userDateB2.trim());
+
+      if (
+        !this.wrongUserDateB1 &&
+        !this.wrongUserHourB &&
+        !this.wrongUserMarked &&
+        !this.wrongUserDateB2
+      ) {
+        console.log("כל הכבוד!! כל השדות נכונים ✔️");
+      } else {
+        console.log("יש טעויות... ❌");
+      }
     },
+
     // בדיקה של פרטי החשוד B
     checkB() {
-  // אנחנו בודקים userAnswersB (אורך 4)
-  // אבל susInfo עבור B מתחיל ממקום 1 → צריכים להזיז את האינדקסים
+      this.wrongUserAnswersB = this.userAnswersB.map(
+        (ans, i) => ans.trim() !== this.susInfo[i + 1].trim()
+      );
 
-  this.wrongUserAnswersB = this.userAnswersB.map(
+      const isCorrect = this.wrongUserAnswersB.every((v) => v === false);
+
+      if (isCorrect) {
+        console.log("ייי");
+      } else {
+        console.log("אוף");
+      }
+    },
+
+    // בדיקה פרטי השוטר B
+    checkB1() {
+      this.wrongUserAnswersB1 = this.userAnswersB1.map(
+        (ans, i) => ans.trim() !== this.copInfo[i].trim()
+      );
+
+      // בדיקה האם כולן נכונות
+      const isCorrect = this.wrongUserAnswersB1.every((v) => v === false);
+
+      if (isCorrect) {
+        console.log("כל התשובות נכונות! ✔️");
+      } else {
+        console.log("יש טעויות ❌", this.wrongUserAnswersB1);
+      }
+    },
+    // תפקיד ותאריך B
+    checkB2() {
+      this.wrongUserJobB = this.userJobB.trim() !== this.job.trim();
+
+      // תומך בשתי אפשרויות תאריך
+      this.wrongUserDateConfirmationB = !this.date.includes(
+        this.userDateConfirmationB.trim()
+      );
+
+      if (!this.wrongUserJobB && !this.wrongUserDateConfirmationB) {
+        console.log("כל הכבוד!! שני השדות נכונים ✔️");
+      } else {
+        console.log("יש טעויות... ❌");
+      }
+    },
+    // סימון ותאריך C
+    checkC() {
+      this.wrongUserDateC = !this.date.includes(this.userDateC.trim());
+    // בדיקת סימון
+    this.wrongUserMarkedC = this.userMarkedC.trim() !== this.marked.trim();
+
+    if (!this.wrongUserDateC && !this.wrongUserMarkedC) {
+      console.log("כל הכבוד!! שני השדות נכונים ✔️");
+    } else {
+      console.log("יש טעויות... ❌");
+    }
+    },
+    //  בדיקה חשוד מערך C + סוג סם
+    checkC1() {
+      this.wrongUserAnswersC = this.userAnswersC.map(
     (ans, i) => ans.trim() !== this.susInfo[i + 1].trim()
   );
 
-  // בדיקה אם הכל נכון
-  const isCorrect = this.wrongUserAnswersB.every((v) => v === false);
+  // בדיקה של סוג הסם
+  this.wrongUserDrugKind = this.userDrugKind.trim() !== this.drugKind.trim();
+
+  // בודק אם הכל נכון
+  const isCorrect =
+    this.wrongUserAnswersC.every((v) => v === false) &&
+    !this.wrongUserDrugKind;
 
   if (isCorrect) {
-    console.log("ייי");
+    console.log("ייי – כל השדות נכונים!");
   } else {
-    console.log("אוף");
+    console.log(
+      "אוף – יש שגיאות",
+      this.wrongUserAnswersC,
+      this.wrongUserDrugKind ? "סוג הסם לא נכון" : ""
+    );
   }
-},
-// בדיקה פרטי השוטר B
-checkB1() {
-
-},
-// תפקיד ותאירך B
-checkB2() {
-
-},
+    },
+    // מערך בדיקה למטה חשוד
+    checkC2() {},
+    // מערך בדיקה למטה שוטר
+    checkC3() {},
   },
 };
 </script>
