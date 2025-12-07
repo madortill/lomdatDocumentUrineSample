@@ -836,7 +836,6 @@
           />
         </g>
 
-        
         // חתימה חשוד B
         <g>
           <path
@@ -1001,23 +1000,58 @@
         <rect class="cls-1" x="400" y="977.93" width="57.5" height="43" />
         <rect class="cls-1" x="33.83" y="976.85" width="57.5" height="43" />
 
-
-        <rect class="cls-2" x="718.5" y="826" width="16.5" height="16.5" style="fill: #ffffff;" />
-        <g id="X3" @click="showX" :class="{ hidden: !showX[3] }">
+        <rect
+          class="cls-2"
+          x="718.5"
+          y="826"
+          width="16.5"
+          height="16.5"
+          style="fill: #ffffff"
+        />
+        <g
+          id="X2"
+          @click="showX"
+          :class="{ hidden: !xMarks[2] }"
+          style="cursor: pointer"
+        >
           <rect class="cls-5" x="719" y="827" width="15" height="15" />
           <text class="cls-3" transform="translate(722.16 839.48)">
             <tspan x="10" y="0">X</tspan>
           </text>
         </g>
-        <rect class="cls-2" x="715.14" y="908.18" width="16.5" height="16.5" style="fill: #ffffff;" />
-        <g id="X2" @click="showX" :class="{ hidden: !showX[2] }">
+        <rect
+          class="cls-2"
+          x="715.14"
+          y="908.18"
+          width="16.5"
+          height="16.5"
+          style="fill: #ffffff"
+        />
+        <g
+          id="X1"
+          @click="showX"
+          :class="{ hidden: !xMarks[1] }"
+          style="cursor: pointer"
+        >
           <rect class="cls-5" x="716" y="909" width="15" height="15" />
           <text class="cls-3" transform="translate(719.16 921.48)">
             <tspan x="10" y="0">X</tspan>
           </text>
         </g>
-        <rect class="cls-2" x="715.14" y="932.53" width="16.5" height="16.5" style="fill: #ffffff;" />
-        <g id="X1" @click="showX" :class="{ hidden: !showX[1] }">
+        <rect
+          class="cls-2"
+          x="715.14"
+          y="932.53"
+          width="16.5"
+          height="16.5"
+          style="fill: #ffffff"
+        />
+        <g
+          id="X0"
+          @click="showX"
+          :class="{ hidden: !xMarks[0] }"
+          style="cursor: pointer"
+        >
           <rect class="cls-5" x="716" y="933" width="15" height="15" />
           <text class="cls-3" transform="translate(719.16 945.48)">
             <tspan x="10" y="0">X</tspan>
@@ -1026,11 +1060,15 @@
       </g>
     </g>
     <image
-      href="@/assets/media/part1documents/nextBtn.png"
-      @click="checkC3"
-      class="button-next"
-      style="cursor: pointer"
-    />
+  href="@/assets/media/part1documents/nextBtn.png"
+  @click="!isNextDisabled && checkDoc()"
+  class="button-next"
+  :style="{ 
+    cursor: isNextDisabled ? 'not-allowed' : 'pointer', 
+    opacity: isNextDisabled ? 0.5 : 1 
+  }"
+/>
+
   </svg>
 </template>
 <script>
@@ -1139,7 +1177,82 @@ export default {
       drugKind: "THC",
     };
   },
+
+  computed: {
+  isNextDisabled() {
+    // בדיקה שכל השדות מלאים
+    const allFieldsFilled = [
+      ...this.userAnswersA,
+      ...this.userAnswersA1,
+      ...this.userAnswersB,
+      ...this.userAnswersB1,
+      ...this.userAnswersC,
+      ...this.userAnswerUp,
+      this.userLow,
+      this.userDateA,
+      this.userHourA,
+      this.userJobA,
+      this.userDateConfirmationA,
+      this.userDateB1,
+      this.userHourB,
+      this.userMarked,
+      this.userDateB2,
+      this.userJobB,
+      this.userDateConfirmationB,
+      this.userDateC,
+      this.userMarkedC,
+      ...this.userAnswerDownGiver,
+      ...this.userAnswerDownChecker,
+      this.userDrugKind
+    ].every(field => field !== "" && field !== null && field !== undefined);
+
+    // בדיקה שכל האיקסיים נלחצו
+    const allXClicked = this.xMarks.every(v => v === true);
+
+    // בדיקה שכל החתימות נלחצו
+    const allSigned = this.signatures.every(v => v === true);
+
+    // הכפתור פעיל רק אם הכל נכון
+    return !(allFieldsFilled && allXClicked && allSigned);
+  }
+},
+
   methods: {
+    canGoNext() {
+    // בדיקה שכל השדות מלאים
+    const allFieldsFilled = [
+      ...this.userAnswersA,
+      ...this.userAnswersA1,
+      ...this.userAnswersB,
+      ...this.userAnswersB1,
+      ...this.userAnswersC,
+      ...this.userAnswerUp,
+      this.userLow,
+      this.userDateA,
+      this.userHourA,
+      this.userJobA,
+      this.userDateConfirmationA,
+      this.userDateB1,
+      this.userHourB,
+      this.userMarked,
+      this.userDateB2,
+      this.userJobB,
+      this.userDateConfirmationB,
+      this.userDateC,
+      this.userMarkedC,
+      ...this.userAnswerDownGiver,
+      ...this.userAnswerDownChecker,
+      this.userDrugKind
+    ].every((field) => field !== "" && field !== null && field !== undefined);
+
+    // בדיקה שכל האיקסיים נלחצו
+    const allXClicked = this.xMarks.every((v) => v === true);
+
+    // בדיקה שכל החתימות נלחצו
+    const allSigned = this.signatures.every((v) => v === true);
+
+    return allFieldsFilled && allXClicked && allSigned;
+  },
     sign(event) {
       const id = event.target.id; // למשל: "sign-3"
       const index = Number(id.split("-")[1]); // מחלץ רק את המספר
@@ -1148,76 +1261,69 @@ export default {
         this.signatures[index] = true; // מפעיל את החתימה המתאימה
       }
     },
-    showX (event) {
+    showX(event) {
       const id = event.currentTarget.id; // לדוגמה: "X3"
-    const num = Number(id.replace("X", "")); // מוציא את המספר 3
+      const num = Number(id.replace("X", "")); // מוציא את המספר 3
 
-    if (!isNaN(num)) {
-      this.showX[num] = !this.showX[num]; // הופך מ־false ל־true או להפך
-    }
+      if (!isNaN(num)) {
+        this.xMarks[num] = true;
+      }
+      console.log("hiiii");
     },
-    // פרטי החשוד שורה A
-    check1() {
+    checkDoc() {
+      let rightAns = 0;
+      // פרטי החשוד שורה A
       this.wrongUserAnswersA = this.userAnswersA.map(
         (ans, i) => ans.trim() !== this.susInfo[i].trim()
       );
       const isCorrect = this.wrongUserAnswersA.every((v) => v === false);
 
       if (isCorrect) {
-        console.log("ייי");
-      } else {
-        console.log("אוף");
+        rightAns++;
       }
-    },
+      // בדיקה של הלמעלה
+      this.wrongUserAnswersUp = this.userAnswerUp
+  .slice(0, 2) // רק האיברים 0 ו-1
+  .map((ans, i) => ans.trim() !== this.answersUp[i].trim());
 
-    // בדיקה של הלמעלה
-    checkUp() {
-      this.wrongUserAnswersUp = this.userAnswerUp.map(
-        (ans, i) => ans.trim() !== this.answersUp[i].trim()
-      );
+// בדיקה של האיבר השלישי (תאריך)
+const dateWrong = !this.date.includes(this.userAnswerUp[2].trim());
 
-      const lowWrong = this.userLow.trim() !== this.low.trim();
-      this.wrongUserAnswersUp.push(lowWrong);
+// מוסיפים את בדיקת האיבר השלישי למערך
+this.wrongUserAnswersUp.push(dateWrong);
 
-      const isCorrect = this.wrongUserAnswersUp.every((v) => v === false);
+// עכשיו מוסיפים את lowWrong כמו שהיה
+const lowWrong = this.userLow.trim() !== this.low.trim();
+this.wrongUserAnswersUp.push(lowWrong);
 
-      if (isCorrect) {
-        console.log("יייי");
-      } else {
-        console.log("אוף");
-      }
-    },
+// בדיקה אם הכל נכון
+const isCorrect1 = this.wrongUserAnswersUp.every((v) => v === false);
 
-    // בדיקה של תאריך ושעה A
-    checkDateHour() {
+if (isCorrect1) {
+  rightAns++;
+}
+
+      // בדיקה של תאריך ושעה A
       this.wrongDateA = !this.date.includes(this.userDateA.trim());
 
       this.wrongHourA = this.userHourA.trim() !== this.hourA.trim();
 
       if (!this.wrongDateA && !this.wrongHourA) {
-        console.log("יייי");
-      } else {
-        console.log("אוף");
+        rightAns++;
       }
-    },
 
-    // בדיקה של פרטי השוטר A
-    check2() {
-      this.wrongUserAnswersA1 = this.userAnswersA1.map(
+       // בדיקה של פרטי השוטר A
+       this.wrongUserAnswersA1 = this.userAnswersA1.map(
         (ans, i) => ans.trim() !== this.copInfo[i].trim()
       );
 
-      const isCorrect = this.wrongUserAnswersA1.every((v) => v === false);
+      const isCorrect2 = this.wrongUserAnswersA1.every((v) => v === false);
 
-      if (isCorrect) {
-        console.log("ייי – כל התשובות נכונות!");
-      } else {
-        console.log("אוף – יש תשובות שגויות", this.wrongUserAnswersA1);
+      if (isCorrect2) {
+        rightAns++;
       }
-    },
 
-    // בדיקה של עבודה + תאריך A
-    check3() {
+      // בדיקה של עבודה + תאריך A
       this.wrongUserJobA = this.userJobA.trim() !== this.job.trim();
 
       this.wrongUserDateConfirmationA = !this.date.includes(
@@ -1225,147 +1331,113 @@ export default {
       );
 
       if (!this.wrongUserJobA && !this.wrongUserDateConfirmationA) {
-        console.log("כל הכבוד!! שני השדות נכונים ✔️");
-      } else {
-        console.log("יש טעויות... ❌");
+        rightAns++;
       }
-    },
-
-    // שני תאריך, שעה וסימון B
-    check4() {
+      // שני תאריך, שעה וסימון B
       this.wrongUserDateB1 = !this.date.includes(this.userDateB1.trim());
 
-      this.wrongUserHourB = this.userHourB.trim() !== this.hourB.trim();
+this.wrongUserHourB = this.userHourB.trim() !== this.hourB.trim();
 
-      this.wrongUserMarked = this.userMarked.trim() !== this.marked.trim();
+this.wrongUserMarked = this.userMarked.trim() !== this.marked.trim();
 
-      this.wrongUserDateB2 = !this.date.includes(this.userDateB2.trim());
+this.wrongUserDateB2 = !this.date.includes(this.userDateB2.trim());
 
-      if (
-        !this.wrongUserDateB1 &&
-        !this.wrongUserHourB &&
-        !this.wrongUserMarked &&
-        !this.wrongUserDateB2
-      ) {
-        console.log("כל הכבוד!! כל השדות נכונים ✔️");
-      } else {
-        console.log("יש טעויות... ❌");
-      }
-    },
+if (
+  !this.wrongUserDateB1 &&
+  !this.wrongUserHourB &&
+  !this.wrongUserMarked &&
+  !this.wrongUserDateB2
+) {
+  rightAns++;
+}
 
-    // בדיקה של פרטי החשוד B
-    checkB() {
-      this.wrongUserAnswersB = this.userAnswersB.map(
+// בדיקה של פרטי החשוד B
+this.wrongUserAnswersB = this.userAnswersB.map(
         (ans, i) => ans.trim() !== this.susInfo[i + 1].trim()
       );
 
-      const isCorrect = this.wrongUserAnswersB.every((v) => v === false);
+      const isCorrect3 = this.wrongUserAnswersB.every((v) => v === false);
 
-      if (isCorrect) {
-        console.log("ייי");
-      } else {
-        console.log("אוף");
+      if (isCorrect3) {
+        rightAns++;
       }
-    },
 
-    // בדיקה פרטי השוטר B
-    checkB1() {
-      this.wrongUserAnswersB1 = this.userAnswersB1.map(
+// בדיקה פרטי השוטר B
+this.wrongUserAnswersB1 = this.userAnswersB1.map(
         (ans, i) => ans.trim() !== this.copInfo[i].trim()
       );
+      const isCorrect4 = this.wrongUserAnswersB1.every((v) => v === false);
 
-      // בדיקה האם כולן נכונות
-      const isCorrect = this.wrongUserAnswersB1.every((v) => v === false);
-
-      if (isCorrect) {
-        console.log("כל התשובות נכונות! ✔️");
-      } else {
-        console.log("יש טעויות ❌", this.wrongUserAnswersB1);
+      if (isCorrect4) {
+        rightAns++;
       }
-    },
-    // תפקיד ותאריך B
-    checkB2() {
+
+      // תפקיד ותאריך B
       this.wrongUserJobB = this.userJobB.trim() !== this.job.trim();
 
-      // תומך בשתי אפשרויות תאריך
       this.wrongUserDateConfirmationB = !this.date.includes(
         this.userDateConfirmationB.trim()
       );
 
       if (!this.wrongUserJobB && !this.wrongUserDateConfirmationB) {
-        console.log("כל הכבוד!! שני השדות נכונים ✔️");
-      } else {
-        console.log("יש טעויות... ❌");
+        rightAns++;
       }
-    },
-    // סימון ותאריך C
-    checkC() {
+      // סימון ותאריך C
       this.wrongUserDateC = !this.date.includes(this.userDateC.trim());
-      // בדיקת סימון
       this.wrongUserMarkedC = this.userMarkedC.trim() !== this.marked.trim();
 
       if (!this.wrongUserDateC && !this.wrongUserMarkedC) {
-        console.log("כל הכבוד!! שני השדות נכונים ✔️");
-      } else {
-        console.log("יש טעויות... ❌");
+        rightAns++;
       }
-    },
-    //  בדיקה חשוד מערך C + סוג סם
-    checkC1() {
+
+      //  בדיקה חשוד מערך C + סוג סם
       this.wrongUserAnswersC = this.userAnswersC.map(
         (ans, i) => ans.trim() !== this.susInfo[i + 1].trim()
       );
 
-      // בדיקה של סוג הסם
       this.wrongUserDrugKind =
         this.userDrugKind.trim() !== this.drugKind.trim();
 
-      // בודק אם הכל נכון
-      const isCorrect =
+      const isCorrect5 =
         this.wrongUserAnswersC.every((v) => v === false) &&
         !this.wrongUserDrugKind;
 
-      if (isCorrect) {
-        console.log("ייי – כל השדות נכונים!");
-      } else {
-        console.log(
-          "אוף – יש שגיאות",
-          this.wrongUserAnswersC,
-          this.wrongUserDrugKind ? "סוג הסם לא נכון" : ""
-        );
+      if (isCorrect5) {
+        rightAns++;
       }
-    },
-    // מערך בדיקה למטה חשוד
-    checkC2() {
+
+      // מערך בדיקה למטה חשוד
       this.wrongUserAnswerDownGiver = this.userAnswerDownGiver.map((ans, i) => {
         return ans.trim() !== this.susInfo[i + 1].trim();
       });
 
-      const isCorrect = this.wrongUserAnswerDownGiver.every((v) => v === false);
+      const isCorrect6 = this.wrongUserAnswerDownGiver.every((v) => v === false);
 
-      if (isCorrect) {
-        console.log("כל השדות נכונים! ✔️");
-      } else {
-        console.log("יש טעויות ❌", this.wrongUserAnswerDownGiver);
+      if (isCorrect6) {
+        rightAns++;
       }
-    },
-    // מערך בדיקה למטה שוטר
-    checkC3() {
+
+      // מערך בדיקה למטה שוטר
       this.wrongUserAnswerDownChecker = this.userAnswerDownChecker.map(
         (ans, i) => {
           return ans.trim() !== this.copInfo[i].trim();
         }
       );
 
-      const isCorrect = this.wrongUserAnswerDownChecker.every(
+      const isCorrect7 = this.wrongUserAnswerDownChecker.every(
         (v) => v === false
       );
 
-      if (isCorrect) {
-        console.log("כל השדות נכונים! ✔️");
-      } else {
-        console.log("יש טעויות ❌", this.wrongUserAnswerDownChecker);
+      if (isCorrect7) {
+        rightAns++;
       }
+
+      if(rightAns === 13) {
+        alert("you did it!");
+      } else {
+        alert("try again...");
+      }
+
     },
   },
 };
