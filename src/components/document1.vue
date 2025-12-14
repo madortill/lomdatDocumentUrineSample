@@ -3,7 +3,9 @@
     <!-- <div v-if="page === 1" class="document1">
 
     </div> -->
-    <document class="document1"></document>
+    <div v-if="result !== ''" class="black-div"></div>
+    <document class="document1" @result="sendResult" @to-end="toEnd"></document>
+    <result class="result" :resultFrom="result" />
     <!-- <div class="contaner-details">
       <p class="detailBtn" @click="isOpen = !isOpen">
         {{ isOpen ? "סגירה" : "פרטים" }}
@@ -30,108 +32,31 @@
 import Information from "./Information.vue";
 import DetailsBox from "./DetailsBox.vue";
 import document from "./document.vue";
+import result from "./result.vue";
 export default {
   components: {
     Information,
     DetailsBox,
-    document
+    document,
+    result
   },
   data() {
     return {
       inputs: [],
       reasonAnswer: "",
       roomUser: "",
-      userAnswerUp: Array(3).fill(""),
-      userAnswersA: Array(5).fill(""),
-      userAnswersA1: Array(2).fill(""),
-      userAnswersA2: Array(4).fill(""),
-      userAnswersB: Array(4).fill(""),
-      userAnswersB1: Array(4).fill(""),
-      userAnswersC: Array(4).fill(""),
-      userCheckbox: Array(3).fill(""),
-      userAnswerDownGiver: Array(4).fill(""),
-      userAnswerDownChecker: Array(4).fill(""),
-      userDate: "",
-      userHour: "",
-      userMarked: "",
-      userDrugKind: "",
-      signedAsus: false,
-      signedAcop: false,
-      signedBsus: false,
-      signedBcop: false,
-      signedCsus: false,
-      signedCcop: false,
-      //wrongArrays
-      wrongUserAnswersUp: [],
-      // answers
-      answersUp: ["יואב", "202510047", "01/03/2025"],
-      userInfo: ["25633379", "9543874", 'רב"ט', "לירון אסולין", 'בא"ף 8223'],
-      date: "01/03/2025",
-      hourA: "18:23",
-      copInfo: ["8357012", "סמל", "רוני בן משה", 'מצ"ח 6012'],
-      jobA: 'בלש מצ"ח',
-      hourB: "18:31",
-      marked: "ר.ב.מ (02)",
-      DrugKind: "THC",
-      page: 1,
-      answers: {
-        que4: {
-          year: "",
-          month: "",
-          day: "",
-          time: "",
-        },
-        que5: {
-          year: "",
-          month: "",
-          day: "",
-          time: "",
-        },
-        que6: {
-          year: "",
-          month: "",
-          day: "",
-          time: "",
-        },
-      },
-      wrongDates: {
-        que4: false,
-        que5: false,
-        que6: false,
-      },
-      wrongTimes: {
-        que4: false,
-        que5: false,
-        que6: false,
-      },
-      wrongUserAnswers: [],
-      wrongReason: false,
-      wrongRoom: false,
-      wrongChosen: false,
-      debugMode: true,
-      propsResult: "",
+      result: "",
       isOpen: false,
       isInfoOpen: false,
     };
   },
   methods: {
-    check1() {
-      this.wrongUserAnswersUp = this.userAnswerUp.map(
-    (ans, i) => ans !== this.answersUp[i]
-  );
-
-  const isCorrect = this.wrongUserAnswersUp.every(v => v === false);
-
-  if (isCorrect) {
-    console.log("יאי");
-  } else {
-    console.log("אוף");
-  }
+    sendResult(res) {
+      this.result = res;
     },
-    sign() {
-      this.signed = true;
+    toEnd() {
+      this.$emit("to-end");
     },
-
     openInfo() {
       this.isInfoOpen = !this.isInfoOpen;
     },
@@ -141,12 +66,7 @@ export default {
 
 <style scoped>
 .document1 {
-  /* width: 45rem; */
   height: 95vh;
-  background-image: url("@/assets/media/part1documents/document.svg");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  overflow: hidden;
 }
 .result {
   position: absolute;
@@ -480,105 +400,15 @@ export default {
 .detailBtn:active {
   background-color: #123199;
 }
-@media (max-width: 1455px) {
-  .input4 {
-    margin-top: 2rem;
-  }
-  .input5 {
-    margin-top: 2.3rem;
-  }
-  .signature {
-    top: -16.5rem;
-  }
-  #text4 {
-    top: -11.4rem;
-  }
-}
-@media (max-width: 930px) {
-  .detailBtn {
-    top: -4.5rem;
-    right: 28rem;
-  }
-  .details {
-    top: -0.5rem;
-    right: 30rem;
-  }
-  .infoBtn {
-    bottom: 45.8rem;
-    left: 23rem;
-  }
-  .information {
-    position: absolute;
-    top: -7rem;
-    right: 8rem;
-  }
-  .input {
-    margin-top: 11.4rem;
-    width: 2.55rem;
-  }
-}
-@media (max-width: 870px) {
-  .input4 {
-    margin-top: 1.7rem;
-  }
-  .input5 {
-    margin-top: 2rem;
-  }
-  .input6 {
-    margin-top: 2.2rem;
-  }
-  #text4 {
-    top: -11.4rem;
-  }
-  .information {
-    right: 10rem;
-  }
-  .details {
-    right: 25rem;
-  }
-}
-@media (max-width: 610px) {
-  .information {
-    right: 16rem;
-  }
-  .details {
-    right: 19.5rem;
-  }
-  .input {
-    margin-top: 11.4rem;
-    width: 2.45rem;
-  }
-  .input4 {
-    margin-top: 1.4rem;
-  }
-  .input5 {
-    margin-top: 1.8rem;
-  }
-  .input6 {
-    top: -13.3rem;
-  }
-  #text4 {
-    top: -11.4rem;
-  }
-  .signature {
-    top: 15rem;
-  }
-  .detailBtn {
-    right: 23rem;
-  }
-  .infoBtn {
-    left: 20rem;
-  }
-}
-@media (max-width: 420px) {
-  .que2 {
-    margin-top: -7rem;
-  }
-  .input4 {
-    margin-top: 1.6rem;
-  }
-}
-.signature {
-  top: -16.5rem;
+.black-div {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.623);
+  pointer-events: none;
 }
 </style>

@@ -1061,6 +1061,8 @@
     </g>
     <image
   href="@/assets/media/part1documents/nextBtn.png"
+  x = "15"
+  y = "1025"
   @click="!isNextDisabled && checkDoc()"
   class="button-next"
   :style="{ 
@@ -1175,11 +1177,13 @@ export default {
       hourB: "18:31",
       marked: "ר.ב.מ (02)",
       drugKind: "THC",
+      debugMode: false,
     };
   },
 
   computed: {
   isNextDisabled() {
+    if (this.debugMode) return false;
     // בדיקה שכל השדות מלאים
     const allFieldsFilled = [
       ...this.userAnswersA,
@@ -1218,41 +1222,7 @@ export default {
 },
 
   methods: {
-    canGoNext() {
-    // בדיקה שכל השדות מלאים
-    const allFieldsFilled = [
-      ...this.userAnswersA,
-      ...this.userAnswersA1,
-      ...this.userAnswersB,
-      ...this.userAnswersB1,
-      ...this.userAnswersC,
-      ...this.userAnswerUp,
-      this.userLow,
-      this.userDateA,
-      this.userHourA,
-      this.userJobA,
-      this.userDateConfirmationA,
-      this.userDateB1,
-      this.userHourB,
-      this.userMarked,
-      this.userDateB2,
-      this.userJobB,
-      this.userDateConfirmationB,
-      this.userDateC,
-      this.userMarkedC,
-      ...this.userAnswerDownGiver,
-      ...this.userAnswerDownChecker,
-      this.userDrugKind
-    ].every((field) => field !== "" && field !== null && field !== undefined);
 
-    // בדיקה שכל האיקסיים נלחצו
-    const allXClicked = this.xMarks.every((v) => v === true);
-
-    // בדיקה שכל החתימות נלחצו
-    const allSigned = this.signatures.every((v) => v === true);
-
-    return allFieldsFilled && allXClicked && allSigned;
-  },
     sign(event) {
       const id = event.target.id; // למשל: "sign-3"
       const index = Number(id.split("-")[1]); // מחלץ רק את המספר
@@ -1271,6 +1241,10 @@ export default {
       console.log("hiiii");
     },
     checkDoc() {
+      if (this.debugMode) {
+    this.$emit("to-end");
+    return;
+  }
       let rightAns = 0;
       // פרטי החשוד שורה A
       this.wrongUserAnswersA = this.userAnswersA.map(
@@ -1431,11 +1405,18 @@ this.wrongUserAnswersB1 = this.userAnswersB1.map(
       if (isCorrect7) {
         rightAns++;
       }
-
+// סיכום
       if(rightAns === 13) {
-        alert("you did it!");
+        this.$emit("result", "right");
+        setTimeout(() => {
+          this.$emit("result", "");
+          this.$emit("to-end");
+        }, 2200);
       } else {
-        alert("try again...");
+        this.$emit("result", "wrong");
+        setTimeout(() => {
+          this.$emit("result", "");
+        }, 2200);
       }
 
     },
@@ -1468,7 +1449,7 @@ this.wrongUserAnswersB1 = this.userAnswersB1.map(
 }
 .button-next {
   position: absolute;
-  bottom: 2rem;
+  top: 6rem;
   left: 0.1rem;
   width: 2.2rem;
   cursor: pointer;

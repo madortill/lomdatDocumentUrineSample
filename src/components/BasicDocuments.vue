@@ -1,8 +1,7 @@
 <template>
   <div id="basic-documents">
 
-    <result class="result" :resultFrom="propsResult" />
-    <div v-if="propsResult != '' || !closeIns" class="blackDiv"></div>
+    <div v-if="!closeIns" class="blackDiv"></div>
     <document1 class="part1" @result="showResult" @to-end="toEnd" @saveName="saveName"></document1>
     <instructions v-if="!closeIns" @close="closeIns = true"></instructions>
     
@@ -12,13 +11,11 @@
 <script>
 import document1 from "@/components/document1.vue";
 import instructions from "@/components/instructions.vue";
-import result from "./result.vue";
 import Instructions from './instructions.vue';
 export default {
   name: "basic-documents",
   components: {
     document1,
-    result,
     instructions,
     Instructions
   },
@@ -73,9 +70,14 @@ export default {
   width: 100vw;
   height: 100vh;
   position: absolute;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 3;
   background-color: rgba(0, 0, 0, 0.623);
   pointer-events: none;
 }
+
 
 </style>

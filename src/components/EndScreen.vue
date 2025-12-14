@@ -30,6 +30,7 @@ export default {
 #end-screen {
   background-image: url("@/assets/media/endScreen/end.png");
   background-size: cover;
+  width: 100vw;
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
