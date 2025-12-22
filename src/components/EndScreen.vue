@@ -1,8 +1,8 @@
 <template>
   <div id="end-screen">
     <div class="end-container">
-      <p class="endText"> {{ userName }} סיימת למלא את כל מסמכי המעצר! </p>
-      <p class="endText">בזכותכך עצירת החשוד הושלמה!</p>
+      <p class="endText"> {{ userName }} סיימת למלא את המסמך בהצלחה! </p>
+      <p class="endText">כל הכבוד!</p>
       <button class="againBtn" @click="startAgain">לתחילת הלומדה</button>
     </div>
     <about></about>

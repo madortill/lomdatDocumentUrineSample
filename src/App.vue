@@ -3,8 +3,8 @@
       <img src="@/assets/media/bahad13icon.svg" alt="bahad13icon" class="bahad13-icon">
       <img src="@/assets/media/madorTil.svg" alt="madorTil" class="mador-til">
       <open-screen v-if="page === 0" class="open-screen"  @start="nextPage"></open-screen>
-      <suspect-info v-if="page === 1" class="suspect-info" @to-end="page = 3"></suspect-info>
-      <end-screen v-if="page === 3" @start-over="startAgain" :userName="userName"></end-screen>
+      <suspect-info v-if="page === 1" class="suspect-info" @to-end="page = 2"></suspect-info>
+      <end-screen v-if="page === 2" @start-over="startAgain" :userName="userName"></end-screen>
     </div>
 
 </template>

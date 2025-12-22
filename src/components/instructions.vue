@@ -2,11 +2,11 @@
   <div id="instructions">
     <div class="inst">
     <img src="@/assets/media/close.svg" class="closeBtn" @click="closeInstruction" alt="close">
-    <p class="instText">הגעתם לחדר החקירות!</p>
-    <p class="instText">בעזרת המידע שיש ברשותכם אתם תידרשו למלא את מסמכי המעצר השונים.</p>
+    <!-- <p class="title-inst">הוראות</p> -->
+    <p class="instText">בעזרת המידע שיש ברשותכם אתם תידרשו למלא את מסמך הצהרה על הסכמה למסור דגימת שתן.</p>
     <p class="instText">שימו לב! לא תוכלו לעבור הלאה עד שאתם לא תמלאו את כל השדות במסמך(כולל תיבות סימון, חתימה והקפה בעיגול בעת הצורך).</p>
     <p class="instText">במקרה שחלק מתשובותיכם יהיו שגויות הן יסומנו באדום, תצטרכו לתקן אותן ורק אז תוכלו לעבור הלאה.</p>
-    <p class="instText">מאמינים בכם ובטוחים שתמלאו את המסמכים כראוי וכך תעצרו את החשוד במהירות האפשרית!</p>
+    <p class="instText">מאמינים בכם ובטוחים שתמלאו את המסמך כראוי!</p>
 </div>
 <p v-if="isIphone" class="iphone">שימו לב שהמרכאות לאורך הלומדה הן כאלה(") ולא באלכסון(”).</p>
   </div>
@@ -56,6 +56,12 @@ export default {
     font-family: "rubik";
     width: 15rem;
     font-size: 1.1rem;
+    
+}
+.title-inst {
+    font-family: "rubik";
+    width: 15rem;
+    font-size: 2rem;
     
 }
 .closeBtn {
