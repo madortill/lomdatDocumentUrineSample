@@ -9,37 +9,14 @@
     <button class="back-btn" @click="$emit('back-to-info')">
   חזרה לפרטים
 </button>
-    <!-- <div class="contaner-details">
-      <p class="detailBtn" @click="isOpen = !isOpen">
-        {{ isOpen ? "סגירה" : "פרטים" }}
-      </p>
-      <details-box v-show="isOpen" class="details"></details-box>
-    </div> -->
-    <!-- <img
-      src="@/assets/media/part1documents/nextBtn.png"
-      @click="check1"
-      class="button-next"
-      :disabled="!debugMode && !validateAllFields()"
-      :class="{ 'disabled-btn': !debugMode && !validateAllFields() }"
-      alt="btn"
-    /> -->
-
-    <!-- <button class="infoBtn" @click="openInfo">
-      {{ isInfoOpen ? "סגירה" : "דגשים למילוי" }}
-    </button>
-    <information v-if="isInfoOpen" class="information"></information> -->
   </div>
 </template>
 
 <script>
-import Information from "./Information.vue";
-import DetailsBox from "./DetailsBox.vue";
 import document from "./document.vue";
 import result from "./result.vue";
 export default {
   components: {
-    Information,
-    DetailsBox,
     document,
     result
   },
@@ -49,8 +26,6 @@ export default {
       reasonAnswer: "",
       roomUser: "",
       result: "",
-      isOpen: false,
-      isInfoOpen: false,
     };
   },
   methods: {
@@ -59,9 +34,6 @@ export default {
     },
     toEnd() {
       this.$emit("to-end");
-    },
-    openInfo() {
-      this.isInfoOpen = !this.isInfoOpen;
     },
   },
 };
@@ -103,6 +75,37 @@ export default {
   position: fixed;
   right: 1%;
   z-index: 3;
+}
+@media (max-width: 630px) {
+  .document1 {
+  height: 85vh;
+} 
+}
+@media (max-width: 530px) {
+  .document1 {
+  height: 75vh;
+} 
+}
+@media (max-width: 435px) {
+  .document1 {
+  height: 60vh;
+  /* width: 10rem; */
+} 
+.back-btn {
+  font-size: 0.8rem;
+  top: -1rem;
+}
+}
+@media (max-width: 360px) {
+  .document1 {
+  height: 53vh;
+  /* width: 10rem; */
+} 
+}
+@media (max-height: 660px) {
+  .document1 {
+  height: 65vh;
+} 
 }
 
 </style>

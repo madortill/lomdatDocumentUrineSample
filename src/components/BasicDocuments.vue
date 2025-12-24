@@ -79,20 +79,5 @@ export default {
   background-color: rgba(0, 0, 0, 0.623);
   pointer-events: none;
 }
-.back-btn {
-  font-family: "rubik";
-  font-weight: bold;
-  font-size: 1rem;
-  background-color: #be0000;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  color: white;
-  cursor: pointer;
-  border: none;
-  position: relative;
-  top: 37rem;
-  margin-right: 25rem;
-  z-index: 3;
-}
 
 </style>

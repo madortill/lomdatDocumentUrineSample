@@ -256,7 +256,7 @@ export default {
   direction: rtl;
   white-space: pre-wrap;
   line-height: 1.8;
-  max-width: 70%;
+  max-width: 80%;
   display: flex;
   height: 80%;
   align-items: center;
@@ -280,11 +280,20 @@ export default {
     width: 33rem;
     height: 35rem;
   }
+  .info-text {
+  margin-top: 6rem;
+  max-width: 100%;
+}
 }
 @media (max-width: 440px) {
   .carousel {
     width: 27rem;
     height: 37rem;
   }
+  .info-text {
+  margin-top: 8rem;
+  max-width: 100%;
+}
+
 }
 </style>

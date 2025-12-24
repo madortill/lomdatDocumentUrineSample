@@ -1176,7 +1176,7 @@ export default {
       job: 'בלש מצ"ח',
       hourB: "18:31",
       marked: "ר.ב.מ (02)",
-      drugKind: "THC",
+      drugKind: '"THC"',
       debugMode: false,
     };
   },
@@ -1461,4 +1461,10 @@ this.wrongUserAnswersB1 = this.userAnswersB1.map(
 .hidden {
   opacity: 0;
 }
+@media (max-width: 630px) {
+  .button-next {
+  width: 3.5rem;
+}
+}
+
 </style>
