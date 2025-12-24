@@ -1167,7 +1167,7 @@ export default {
       wrongUserAnswerDownGiver: Array(3).fill(false),
       wrongUserAnswerDownChecker: Array(3).fill(false),
       // answers
-      answersUp: ["יואב", "202510047", "01/03/2025"],
+      answersUp: ["יואב", "2025/0037", "01/03/2025"],
       low: "3",
       susInfo: ["256333791", "9543874", 'רב"ט', "לירון אסולין", 'בא"ף 8223'],
       date: ["01/03/2025", "01.03.2025"],

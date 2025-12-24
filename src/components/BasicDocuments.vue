@@ -1,24 +1,26 @@
 <template>
   <div id="basic-documents">
 
-    <div v-if="!closeIns" class="blackDiv"></div>
-    <document1 class="part1" @result="showResult" @to-end="toEnd" @saveName="saveName"></document1>
-    <instructions v-if="!closeIns" @close="closeIns = true"></instructions>
-    
+    <div v-if="!instructionsClosed" class="blackDiv"></div>
+    <document1 class="part1" @result="showResult" @to-end="toEnd" @saveName="saveName"  @back-to-info="$emit('back-to-info')"></document1>
+    <instructions  v-if="!instructionsClosed"
+    @close="$emit('close-instructions')"></instructions>
+
   </div>
 </template>
 
 <script>
 import document1 from "@/components/document1.vue";
 import instructions from "@/components/instructions.vue";
-import Instructions from './instructions.vue';
 export default {
   name: "basic-documents",
   components: {
     document1,
     instructions,
-    Instructions
   },
+  props: {
+  instructionsClosed: Boolean
+},
   data() {
     return {
       propsResult: '',
@@ -50,7 +52,6 @@ export default {
 
 <style scoped>
 #basic-documents {
-  background-image: url("@/assets/media/backGround.png");
   background-size: 100vw 100vh;
   height: 100vh;
   background-position: center;
@@ -78,6 +79,20 @@ export default {
   background-color: rgba(0, 0, 0, 0.623);
   pointer-events: none;
 }
-
+.back-btn {
+  font-family: "rubik";
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: #be0000;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  top: 37rem;
+  margin-right: 25rem;
+  z-index: 3;
+}
 
 </style>

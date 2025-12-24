@@ -24,7 +24,7 @@ export default {
   },
   data() {
       return {
-          page: 0,
+          page: 2,
           userName: '',
       };
   },
@@ -95,7 +95,7 @@ html {
     z-index: 15;
     
 }
-@media (max-width: 610px) {
+@media (max-width: 425px) {
  #app {
     max-height: 91vh;
   }

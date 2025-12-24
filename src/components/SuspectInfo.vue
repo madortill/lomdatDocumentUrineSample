@@ -34,7 +34,9 @@
   הבא
 </button>
     </div>
-    <basic-documents v-if="showDoc" @to-end="toEnd"/>
+    <basic-documents v-if="showDoc" @to-end="toEnd" @back-to-info="backToInfo"
+      :instructionsClosed="instructionsClosed"
+  @close-instructions="instructionsClosed = true"/>
   </div>
 </template>
 
@@ -65,6 +67,7 @@ export default {
       showBtn: true,
       showDoc: false,
       activeIndex:0,
+      instructionsClosed: false
     };
   },
   mounted() {
@@ -81,6 +84,9 @@ export default {
     toDoc() {
       this.showDoc = true;
     },
+    backToInfo() {
+    this.showDoc = false;
+  },
     toEnd() {
       this.$emit("to-end");
     }
@@ -89,9 +95,7 @@ export default {
 </script>
 
 <style scoped>
-.suspect-info{
-  /* di */
-}
+
 .container {
   display: flex;
   flex-direction: column;

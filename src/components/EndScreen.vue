@@ -4,6 +4,7 @@
       <p class="endText"> {{ userName }} סיימת למלא את המסמך בהצלחה! </p>
       <p class="endText">כל הכבוד!</p>
       <button class="againBtn" @click="startAgain">לתחילת הלומדה</button>
+      <!-- <img src="../assets/media/endScreen/confety.gif" alt="confety" class="confety"> -->
     </div>
     <about></about>
   </div>
@@ -106,5 +107,9 @@ export default {
 }
 .againBtn:active {
   background-color: #d40000;
+}
+.confety {
+  width: 90vw;
+  position: absolute;
 }
 </style>
